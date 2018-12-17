@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Diagrama2">
+  <ClassDiagramComponents>
+    <Class name="Proyecto" package="" visibility="public" xPosition="303.0" yPosition="299.0">
+      <Fields>
+        <Field name="IdProyecto" type="Object" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="ActivarNuevoProyecto" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MomentoProyecto" package="" visibility="public" xPosition="43.0" yPosition="437.0">
+      <Fields>
+        <Field name="NombreMmtoProyecto" type="Object" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Cultivo" package="" visibility="public" xPosition="610.0" yPosition="378.0">
+      <Fields>
+        <Field name="NombreCultivo" type="Object" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="AsignarNmbCultivo" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Campo" package="" visibility="public" xPosition="382.0" yPosition="44.0">
+      <Fields>
+        <Field name="NombreCampo" type="Object" visibility="private"/>
+        <Field name="Superficie" type="Object" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="ValidarNombreCampo" returnType="void" visibility="public"/>
+        <Method name="RegistrarCampo" returnType="void" visibility="public"/>
+        <Method name="ValidarSuperficie" returnType="void" visibility="public"/>
+        <Method name="IngresarSuperficie" returnType="void" visibility="public"/>
+        <Method name="ConfirmarRegistroCampo" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="EstadoCampo" package="" visibility="public" xPosition="43.0" yPosition="112.0">
+      <Fields>
+        <Field name="nombreEstdCampo" type="Object" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="ConsultarEstdCampo" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Lote" package="" visibility="public" xPosition="769.0" yPosition="33.0">
+      <Fields>
+        <Field name="NroLote" type="Object" visibility="private"/>
+        <Field name="SuperficieLote" type="Object" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="RegistrarLote" returnType="void" visibility="public"/>
+        <Method name="ValidarNroLote" returnType="void" visibility="public"/>
+        <Method name="IngresarSuperficie" returnType="void" visibility="public"/>
+        <Method name="MostrarDatosLote" returnType="void" visibility="public"/>
+        <Method name="EditarLote" returnType="void" visibility="public"/>
+        <Method name="QuitarLote" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="TipoSuelo" package="" visibility="public" xPosition="947.0" yPosition="280.0">
+      <Fields>
+        <Field name="NroSuelo" type="Object" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="AsignarTipoSuelo" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Minerales" package="" visibility="public" xPosition="969.0" yPosition="542.0">
+      <Fields>
+        <Field name="PorcentMinaral" type="Object" visibility="private"/>
+        <Field name="NombreMineral" type="Object" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="RegistrarPorcentaje" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Laboreos" package="" visibility="public" xPosition="329.0" yPosition="618.0">
+      <Fields>
+        <Field name="NombreLaboreo" type="Object" visibility="private"/>
+        <Field name="FechaInicio" type="Object" visibility="private"/>
+        <Field name="FechaFin" type="Object" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="AplicarLaboreo" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="DetalleLaboreo" package="" visibility="public" xPosition="553.0" yPosition="847.0">
+      <Fields>
+        <Field name="Orden" type="Object" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Enum name="NombreMineral" package="" visibility="public" xPosition="1171.0" yPosition="558.0">
+      <Literals>
+        <Literal name="Agua"/>
+        <Literal name="Mineral"/>
+        <Literal name="Tierra"/>
+      </Literals>
+    </Enum>
+    <Enum name="NombreCultivo" package="" visibility="public" xPosition="617.0" yPosition="553.0">
+      <Literals>
+        <Literal name="Soja"/>
+        <Literal name="Maní"/>
+        <Literal name="Girasol"/>
+        <Literal name="otro"/>
+      </Literals>
+    </Enum>
+    <Enum name="NombreLaboreos" package="" visibility="public" xPosition="130.0" yPosition="795.0">
+      <Literals>
+        <Literal name="Arar"/>
+        <Literal name="Rastrillar"/>
+        <Literal name="Sembrar"/>
+        <Literal name="Escardillar"/>
+        <Literal name="Cosechar"/>
+        <Literal name="Rolar"/>
+        <Literal name="Fumigar"/>
+        <Literal name="Abandonar"/>
+      </Literals>
+    </Enum>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="Aplicar a" source="TipoSuelo" target="Cultivo" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <IsRelation name="is" source="EstadoCampo" target="Campo"/>
+    <HasRelation name="Está Compuesto por" source="Campo" target="Lote" type="Composition" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="1" source="Laboreos" target="Proyecto" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="Disponible en" source="Proyecto" target="Lote" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="Definidos" source="Lote" target="TipoSuelo" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="1" source="Laboreos" target="DetalleLaboreo" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Proyecto" target="MomentoProyecto"/>
+    <HasRelation name="Contiene" source="TipoSuelo" target="Minerales" type="Aggregation" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

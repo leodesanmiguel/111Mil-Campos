@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="03-estacionamiento-master">
+  <ClassDiagramComponents>
+    <Class name="AbonoPropietario" package="poo.estacionamiento" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="fechaHora" type="Date" visibility="private"/>
+        <Field name="montoCobrado" type="BigDecimal" visibility="private"/>
+        <Field name="nroComprobante" type="int" visibility="private"/>
+        <Field name="saldoActual" type="BigDecimal" visibility="private"/>
+        <Field name="usuario" type="Usuario" visibility="private"/>
+        <Field name="ingresos" type="List&lt;Ingreso&gt;" visibility="private"/>
+        <Field name="propietario" type="Propietario" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Date" name="fechaHora"/>
+          <Argument type="BigDecimal" name="montoCobrado"/>
+          <Argument type="int" name="nroComprobante"/>
+          <Argument type="BigDecimal" name="saldoActual"/>
+          <Argument type="Propietario" name="propietario"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="Date" name="fechaHora"/>
+          <Argument type="BigDecimal" name="montoCobrado"/>
+          <Argument type="int" name="nroComprobante"/>
+          <Argument type="BigDecimal" name="saldoActual"/>
+          <Argument type="Propietario" name="propietario"/>
+          <Argument type="Usuario" name="usuario"/>
+          <Argument type="List&lt;Ingreso&gt;" name="ingresos"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getFechaHora" returnType="Date" visibility="public"/>
+        <Method name="setFechaHora" returnType="void" visibility="public">
+          <Argument type="Date" name="fechaHora"/>
+        </Method>
+        <Method name="getMontoCobrado" returnType="BigDecimal" visibility="public"/>
+        <Method name="setMontoCobrado" returnType="void" visibility="public">
+          <Argument type="BigDecimal" name="montoCobrado"/>
+        </Method>
+        <Method name="getNroComprobante" returnType="int" visibility="public"/>
+        <Method name="setNroComprobante" returnType="void" visibility="public">
+          <Argument type="int" name="nroComprobante"/>
+        </Method>
+        <Method name="getSaldoActual" returnType="BigDecimal" visibility="public"/>
+        <Method name="setSaldoActual" returnType="void" visibility="public">
+          <Argument type="BigDecimal" name="saldoActual"/>
+        </Method>
+        <Method name="getUsuario" returnType="Usuario" visibility="public"/>
+        <Method name="setUsuario" returnType="void" visibility="public">
+          <Argument type="Usuario" name="usuario"/>
+        </Method>
+        <Method name="getIngresos" returnType="List&lt;Ingreso&gt;" visibility="public"/>
+        <Method name="setIngresos" returnType="void" visibility="public">
+          <Argument type="List&lt;Ingreso&gt;" name="ingresos"/>
+        </Method>
+        <Method name="getPropietario" returnType="Propietario" visibility="public"/>
+        <Method name="setPropietario" returnType="void" visibility="public">
+          <Argument type="Propietario" name="propietario"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GestorCobroAbono" package="poo.estacionamiento.controller" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="pantallaCobroAbono" type="PantallaCobroAbono" visibility="private"/>
+        <Field name="propietariosDao" type="PropietariosDao" visibility="private" isFinal="true"/>
+        <Field name="abonosPropietarioDao" type="AbonosPropietarioDao" visibility="private" isFinal="true"/>
+        <Field name="usuario" type="Usuario" visibility="private" isFinal="true"/>
+        <Field name="propietario" type="Propietario" visibility="private"/>
+        <Field name="importe" type="BigDecimal" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="PropietariosDao" name="propietariosDao"/>
+          <Argument type="AbonosPropietarioDao" name="abonosPropietarioDao"/>
+          <Argument type="Usuario" name="usuario"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="buscarPorDni" returnType="Propietario" visibility="public">
+          <Argument type="String" name="dni"/>
+        </Method>
+        <Method name="tomarConfirmacionAcreditacion" returnType="void" visibility="public"/>
+        <Method name="tomarMontoIngresado" returnType="void" visibility="public">
+          <Argument type="BigDecimal" name="importe"/>
+        </Method>
+        <Method name="tomarDni" returnType="void" visibility="public">
+          <Argument type="String" name="text"/>
+        </Method>
+        <Method name="obtenerUltimoNroComprobante" returnType="int" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="Main" package="poo.estacionamiento.controller" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="AbonosPropietarioDao" package="poo.estacionamiento.dao" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Methods>
+        <Method name="obtenerUltimoNumeroDeComprobante" returnType="int" visibility="public"/>
+        <Method name="buscarPorPropietario" returnType="List&lt;AbonoPropietario&gt;" visibility="public">
+          <Argument type="Propietario" name="propietario"/>
+        </Method>
+        <Method name="guardar" returnType="void" visibility="public">
+          <Argument type="AbonoPropietario" name="abonoPropietario"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Class name="AbonosPropietarioDaoHibernateImpl" package="poo.estacionamiento.dao" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="sessionFactory" type="SessionFactory" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="SessionFactory" name="sessionFactory"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="obtenerUltimoNumeroDeComprobante" returnType="int" visibility="public"/>
+        <Method name="buscarPorPropietario" returnType="List&lt;AbonoPropietario&gt;" visibility="public">
+          <Argument type="Propietario" name="propietario"/>
+        </Method>
+        <Method name="guardar" returnType="void" visibility="public">
+          <Argument type="AbonoPropietario" name="abonoPropietario"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AbonosPropietarioDaoImpl" package="poo.estacionamiento.dao" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="abonos" type="List&lt;AbonoPropietario&gt;" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="obtenerUltimoNumeroDeComprobante" returnType="int" visibility="public"/>
+        <Method name="buscarPorPropietario" returnType="List&lt;AbonoPropietario&gt;" visibility="public">
+          <Argument type="Propietario" name="propietario"/>
+        </Method>
+        <Method name="guardar" returnType="void" visibility="public">
+          <Argument type="AbonoPropietario" name="abonoPropietario"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="PropietariosDao" package="poo.estacionamiento.dao" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Methods>
+        <Method name="buscarPorDni" returnType="Propietario" visibility="public">
+          <Argument type="int" name="dni"/>
+        </Method>
+        <Method name="guardar" returnType="void" visibility="public">
+          <Argument type="Propietario" name="propietario"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Class name="PropietariosDaoHibernateImpl" package="poo.estacionamiento.dao" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="sessionFactory" type="SessionFactory" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="SessionFactory" name="sessionFactory"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="buscarPorDni" returnType="Propietario" visibility="public">
+          <Argument type="int" name="dni"/>
+        </Method>
+        <Method name="guardar" returnType="void" visibility="public">
+          <Argument type="Propietario" name="propietario"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PropietariosDaoImpl" package="poo.estacionamiento.dao" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="propietarios" type="List&lt;Propietario&gt;" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="guardar" returnType="void" visibility="public">
+          <Argument type="Propietario" name="propietario"/>
+        </Method>
+        <Method name="buscarPorDni" returnType="Propietario" visibility="public">
+          <Argument type="int" name="dni"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="UsuariosDao" package="poo.estacionamiento.dao" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Methods>
+        <Method name="guardar" returnType="void" visibility="public">
+          <Argument type="Usuario" name="usuario"/>
+        </Method>
+        <Method name="buscarPorNombre" returnType="Usuario" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Class name="UsuariosDaoHibernateImpl" package="poo.estacionamiento.dao" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields>
+        <Field name="sessionFactory" type="SessionFactory" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="SessionFactory" name="sessionFactory"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="guardar" returnType="void" visibility="public">
+          <Argument type="Usuario" name="usuario"/>
+        </Method>
+        <Method name="buscarPorNombre" returnType="Usuario" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Ingreso" package="poo.estacionamiento" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="codigoBarra" type="long" visibility="private"/>
+        <Field name="fechaHoraEgreso" type="Date" visibility="private"/>
+        <Field name="fechaHoraIngreso" type="Date" visibility="private"/>
+        <Field name="monto" type="BigDecimal" visibility="private"/>
+        <Field name="nroTicket" type="int" visibility="private"/>
+        <Field name="observacion" type="String" visibility="private"/>
+        <Field name="porton" type="Porton" visibility="private"/>
+        <Field name="usuario" type="Usuario" visibility="private"/>
+        <Field name="vehiculo" type="Vehiculo" visibility="private"/>
+        <Field name="tarifa" type="Tarifa" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="long" name="codigoBarra"/>
+          <Argument type="Date" name="fechaHoraEgreso"/>
+          <Argument type="Date" name="fechaHoraIngreso"/>
+          <Argument type="BigDecimal" name="monto"/>
+          <Argument type="int" name="nroTicket"/>
+          <Argument type="String" name="observacion"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="long" name="codigoBarra"/>
+          <Argument type="Date" name="fechaHoraEgreso"/>
+          <Argument type="Date" name="fechaHoraIngreso"/>
+          <Argument type="BigDecimal" name="monto"/>
+          <Argument type="int" name="nroTicket"/>
+          <Argument type="String" name="observacion"/>
+          <Argument type="Porton" name="porton"/>
+          <Argument type="Usuario" name="usuario"/>
+          <Argument type="Vehiculo" name="vehiculo"/>
+          <Argument type="Tarifa" name="tarifa"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCodigoBarra" returnType="long" visibility="public"/>
+        <Method name="setCodigoBarra" returnType="void" visibility="public">
+          <Argument type="long" name="codigoBarra"/>
+        </Method>
+        <Method name="getFechaHoraEgreso" returnType="Date" visibility="public"/>
+        <Method name="setFechaHoraEgreso" returnType="void" visibility="public">
+          <Argument type="Date" name="fechaHoraEgreso"/>
+        </Method>
+        <Method name="getFechaHoraIngreso" returnType="Date" visibility="public"/>
+        <Method name="setFechaHoraIngreso" returnType="void" visibility="public">
+          <Argument type="Date" name="fechaHoraIngreso"/>
+        </Method>
+        <Method name="getMonto" returnType="BigDecimal" visibility="public"/>
+        <Method name="setMonto" returnType="void" visibility="public">
+          <Argument type="BigDecimal" name="monto"/>
+        </Method>
+        <Method name="getNroTicket" returnType="int" visibility="public"/>
+        <Method name="setNroTicket" returnType="void" visibility="public">
+          <Argument type="int" name="nroTicket"/>
+        </Method>
+        <Method name="getObservacion" returnType="String" visibility="public"/>
+        <Method name="setObservacion" returnType="void" visibility="public">
+          <Argument type="String" name="observacion"/>
+        </Method>
+        <Method name="getPorton" returnType="Porton" visibility="public"/>
+        <Method name="setPorton" returnType="void" visibility="public">
+          <Argument type="Porton" name="porton"/>
+        </Method>
+        <Method name="getUsuario" returnType="Usuario" visibility="public"/>
+        <Method name="setUsuario" returnType="void" visibility="public">
+          <Argument type="Usuario" name="usuario"/>
+        </Method>
+        <Method name="getVehiculo" returnType="Vehiculo" visibility="public"/>
+        <Method name="setVehiculo" returnType="void" visibility="public">
+          <Argument type="Vehiculo" name="vehiculo"/>
+        </Method>
+        <Method name="getTarifa" returnType="Tarifa" visibility="public"/>
+        <Method name="setTarifa" returnType="void" visibility="public">
+          <Argument type="Tarifa" name="tarifa"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Marca" package="poo.estacionamiento" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="modelos" type="List&lt;Modelo&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="List&lt;Modelo&gt;" name="modelos"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getModelos" returnType="List&lt;Modelo&gt;" visibility="public"/>
+        <Method name="setModelos" returnType="void" visibility="public">
+          <Argument type="List&lt;Modelo&gt;" name="modelos"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Modelo" package="poo.estacionamiento" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Permiso" package="poo.estacionamiento" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="descripcion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getDescripcion" returnType="String" visibility="public"/>
+        <Method name="setDescripcion" returnType="void" visibility="public">
+          <Argument type="String" name="descripcion"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Porton" package="poo.estacionamiento" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="descripcion"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getDescripcion" returnType="String" visibility="public"/>
+        <Method name="setDescripcion" returnType="void" visibility="public">
+          <Argument type="String" name="descripcion"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Propietario" package="poo.estacionamiento" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Fields>
+        <Field name="id" type="Integer" visibility="private"/>
+        <Field name="vehiculos" type="List&lt;Vehiculo&gt;" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="dni" type="int" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="apellido"/>
+          <Argument type="int" name="dni"/>
+          <Argument type="String" name="nombre"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="List&lt;Vehiculo&gt;" name="vehiculos"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="int" name="dni"/>
+          <Argument type="String" name="nombre"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="Integer" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Integer" name="id"/>
+        </Method>
+        <Method name="getApellido" returnType="String" visibility="public"/>
+        <Method name="setApellido" returnType="void" visibility="public">
+          <Argument type="String" name="apellido"/>
+        </Method>
+        <Method name="getDni" returnType="int" visibility="public"/>
+        <Method name="setDni" returnType="void" visibility="public">
+          <Argument type="int" name="dni"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getVehiculos" returnType="List&lt;Vehiculo&gt;" visibility="public"/>
+        <Method name="setVehiculos" returnType="void" visibility="public">
+          <Argument type="List&lt;Vehiculo&gt;" name="vehiculos"/>
+        </Method>
+        <Method name="calcularSaldoActual" returnType="BigDecimal" visibility="public">
+          <Argument type="List&lt;AbonoPropietario&gt;" name="abonosPropietario"/>
+        </Method>
+        <Method name="acreditarMonto" returnType="BigDecimal" visibility="public">
+          <Argument type="BigDecimal" name="importe"/>
+          <Argument type="List&lt;AbonoPropietario&gt;" name="abonos"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Tarifa" package="poo.estacionamiento" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Fields>
+        <Field name="cantidadIngresosSinSaldo" type="int" visibility="private"/>
+        <Field name="esDeAbono" type="boolean" visibility="private"/>
+        <Field name="fecha" type="Date" visibility="private"/>
+        <Field name="montoIngreso" type="BigDecimal" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="cantidadIngresosSinSaldo"/>
+          <Argument type="boolean" name="esDeAbono"/>
+          <Argument type="Date" name="fecha"/>
+          <Argument type="BigDecimal" name="montoIngreso"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCantidadIngresosSinSaldo" returnType="int" visibility="public"/>
+        <Method name="setCantidadIngresosSinSaldo" returnType="void" visibility="public">
+          <Argument type="int" name="cantidadIngresosSinSaldo"/>
+        </Method>
+        <Method name="isEsDeAbono" returnType="boolean" visibility="public"/>
+        <Method name="setEsDeAbono" returnType="void" visibility="public">
+          <Argument type="boolean" name="esDeAbono"/>
+        </Method>
+        <Method name="getFecha" returnType="Date" visibility="public"/>
+        <Method name="setFecha" returnType="void" visibility="public">
+          <Argument type="Date" name="fecha"/>
+        </Method>
+        <Method name="getMontoIngreso" returnType="BigDecimal" visibility="public"/>
+        <Method name="setMontoIngreso" returnType="void" visibility="public">
+          <Argument type="BigDecimal" name="montoIngreso"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TipoVehiculo" package="poo.estacionamiento" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+        <Field name="tarifas" type="List&lt;Tarifa&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="descripcion"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="descripcion"/>
+          <Argument type="List&lt;Tarifa&gt;" name="tarifas"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getDescripcion" returnType="String" visibility="public"/>
+        <Method name="setDescripcion" returnType="void" visibility="public">
+          <Argument type="String" name="descripcion"/>
+        </Method>
+        <Method name="getTarifas" returnType="List&lt;Tarifa&gt;" visibility="public"/>
+        <Method name="setTarifas" returnType="void" visibility="public">
+          <Argument type="List&lt;Tarifa&gt;" name="tarifas"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PantallaCobroAbono" package="poo.estacionamiento.ui" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Fields>
+        <Field name="gestor" type="GestorCobroAbono" visibility="private" isFinal="true"/>
+        <Field name="ahora" type="Date" visibility="private" isFinal="true"/>
+        <Field name="btnBuscarPropietario" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnConfirmar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnGuardar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel10" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel8" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel9" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel2" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel3" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jPanel4" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jTextField8" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTextField9" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtApellido" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtDni" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtFechaActual" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtHoraActual" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtImporte" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtNombre" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="txtSaldoActual" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="GestorCobroAbono" name="gestor"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="btnGuardarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnBuscarPropietarioActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="validarDni" returnType="boolean" visibility="private">
+          <Argument type="String" name="dni"/>
+        </Method>
+        <Method name="validarMonto" returnType="boolean" visibility="private">
+          <Argument type="String" name="monto"/>
+        </Method>
+        <Method name="mostrarPropietarioYSaldoActual" returnType="void" visibility="public">
+          <Argument type="Propietario" name="propietario"/>
+          <Argument type="BigDecimal" name="saldoActual"/>
+        </Method>
+        <Method name="pedirConfirmacionAcreditacion" returnType="void" visibility="public"/>
+        <Method name="limpiarCampos" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Usuario" package="poo.estacionamiento" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Fields>
+        <Field name="id" type="Integer" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="nombreUsuario" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="permisos" type="List&lt;Permiso&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="nombreUsuario"/>
+          <Argument type="String" name="password"/>
+          <Argument type="List&lt;Permiso&gt;" name="permisos"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="Integer" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Integer" name="id"/>
+        </Method>
+        <Method name="getApellido" returnType="String" visibility="public"/>
+        <Method name="setApellido" returnType="void" visibility="public">
+          <Argument type="String" name="apellido"/>
+        </Method>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getNombreUsuario" returnType="String" visibility="public"/>
+        <Method name="setNombreUsuario" returnType="void" visibility="public">
+          <Argument type="String" name="nombreUsuario"/>
+        </Method>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="setPassword" returnType="void" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="getPermisos" returnType="List&lt;Permiso&gt;" visibility="public"/>
+        <Method name="setPermisos" returnType="void" visibility="public">
+          <Argument type="List&lt;Permiso&gt;" name="permisos"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Vehiculo" package="poo.estacionamiento" visibility="public" xPosition="1520.0" yPosition="820.0">
+      <Fields>
+        <Field name="dominio" type="String" visibility="private"/>
+        <Field name="modelo" type="Modelo" visibility="private"/>
+        <Field name="tipoVehiculo" type="TipoVehiculo" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="dominio"/>
+          <Argument type="Modelo" name="modelo"/>
+          <Argument type="TipoVehiculo" name="tipoVehiculo"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getDominio" returnType="String" visibility="public"/>
+        <Method name="setDominio" returnType="void" visibility="public">
+          <Argument type="String" name="dominio"/>
+        </Method>
+        <Method name="getModelo" returnType="Modelo" visibility="public"/>
+        <Method name="setModelo" returnType="void" visibility="public">
+          <Argument type="Modelo" name="modelo"/>
+        </Method>
+        <Method name="getTipoVehiculo" returnType="TipoVehiculo" visibility="public"/>
+        <Method name="setTipoVehiculo" returnType="void" visibility="public">
+          <Argument type="TipoVehiculo" name="tipoVehiculo"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="poo.estacionamiento.Ingreso" target="poo.estacionamiento.Usuario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.Ingreso" target="poo.estacionamiento.Tarifa" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="poo.estacionamiento.dao.PropietariosDaoHibernateImpl" target="poo.estacionamiento.dao.PropietariosDao"/>
+    <HasRelation name="abonosPropietarioDao" source="poo.estacionamiento.controller.GestorCobroAbono" target="poo.estacionamiento.dao.AbonosPropietarioDao" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="propietarios" source="poo.estacionamiento.dao.PropietariosDaoImpl" target="poo.estacionamiento.Propietario" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Propietario&gt;"/>
+    <HasRelation name="permisos" source="poo.estacionamiento.Usuario" target="poo.estacionamiento.Permiso" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Permiso&gt;"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="poo.estacionamiento.dao.UsuariosDaoHibernateImpl" target="poo.estacionamiento.dao.UsuariosDao"/>
+    <UseRelation source="poo.estacionamiento.dao.AbonosPropietarioDaoHibernateImpl" target="poo.estacionamiento.Propietario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.Propietario" target="poo.estacionamiento.Vehiculo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.AbonoPropietario" target="poo.estacionamiento.Propietario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="vehiculos" source="poo.estacionamiento.Propietario" target="poo.estacionamiento.Vehiculo" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Vehiculo&gt;"/>
+    <UseRelation source="poo.estacionamiento.Usuario" target="poo.estacionamiento.Permiso" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="poo.estacionamiento.dao.AbonosPropietarioDaoHibernateImpl" target="poo.estacionamiento.dao.AbonosPropietarioDao"/>
+    <UseRelation source="poo.estacionamiento.TipoVehiculo" target="poo.estacionamiento.Tarifa" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.Marca" target="poo.estacionamiento.Modelo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="poo.estacionamiento.dao.PropietariosDaoImpl" target="poo.estacionamiento.dao.PropietariosDao"/>
+    <UseRelation source="poo.estacionamiento.Vehiculo" target="poo.estacionamiento.Vehiculo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.AbonoPropietario" target="poo.estacionamiento.Usuario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="vehiculo" source="poo.estacionamiento.Ingreso" target="poo.estacionamiento.Vehiculo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pantallaCobroAbono" source="poo.estacionamiento.controller.GestorCobroAbono" target="poo.estacionamiento.ui.PantallaCobroAbono" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gestor" source="poo.estacionamiento.ui.PantallaCobroAbono" target="poo.estacionamiento.controller.GestorCobroAbono" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="usuario" source="poo.estacionamiento.controller.GestorCobroAbono" target="poo.estacionamiento.Usuario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="tarifa" source="poo.estacionamiento.Ingreso" target="poo.estacionamiento.Tarifa" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="poo.estacionamiento.dao.AbonosPropietarioDaoImpl" target="poo.estacionamiento.dao.AbonosPropietarioDao"/>
+    <UseRelation source="poo.estacionamiento.dao.UsuariosDao" target="poo.estacionamiento.Usuario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.Ingreso" target="poo.estacionamiento.Porton" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.Ingreso" target="poo.estacionamiento.Vehiculo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="tipoVehiculo" source="poo.estacionamiento.Vehiculo" target="poo.estacionamiento.TipoVehiculo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.Vehiculo" target="poo.estacionamiento.Modelo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="modelos" source="poo.estacionamiento.Marca" target="poo.estacionamiento.Modelo" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Modelo&gt;"/>
+    <HasRelation name="propietario" source="poo.estacionamiento.controller.GestorCobroAbono" target="poo.estacionamiento.Propietario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.dao.UsuariosDaoHibernateImpl" target="poo.estacionamiento.Usuario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.dao.AbonosPropietarioDao" target="poo.estacionamiento.Propietario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.dao.PropietariosDaoHibernateImpl" target="poo.estacionamiento.Propietario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="propietario" source="poo.estacionamiento.AbonoPropietario" target="poo.estacionamiento.Propietario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.Propietario" target="poo.estacionamiento.Propietario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.controller.GestorCobroAbono" target="poo.estacionamiento.Propietario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="usuario" source="poo.estacionamiento.Ingreso" target="poo.estacionamiento.Usuario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="usuario" source="poo.estacionamiento.AbonoPropietario" target="poo.estacionamiento.Usuario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.dao.PropietariosDaoImpl" target="poo.estacionamiento.Propietario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="propietariosDao" source="poo.estacionamiento.controller.GestorCobroAbono" target="poo.estacionamiento.dao.PropietariosDao" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ingresos" source="poo.estacionamiento.AbonoPropietario" target="poo.estacionamiento.Ingreso" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Ingreso&gt;"/>
+    <HasRelation name="abonos" source="poo.estacionamiento.dao.AbonosPropietarioDaoImpl" target="poo.estacionamiento.AbonoPropietario" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;AbonoPropietario&gt;"/>
+    <HasRelation name="porton" source="poo.estacionamiento.Ingreso" target="poo.estacionamiento.Porton" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="tarifas" source="poo.estacionamiento.TipoVehiculo" target="poo.estacionamiento.Tarifa" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Tarifa&gt;"/>
+    <UseRelation source="poo.estacionamiento.dao.PropietariosDao" target="poo.estacionamiento.Propietario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.ui.PantallaCobroAbono" target="poo.estacionamiento.Propietario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.dao.AbonosPropietarioDaoImpl" target="poo.estacionamiento.Propietario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="modelo" source="poo.estacionamiento.Vehiculo" target="poo.estacionamiento.Modelo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="poo.estacionamiento.AbonoPropietario" target="poo.estacionamiento.Ingreso" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
